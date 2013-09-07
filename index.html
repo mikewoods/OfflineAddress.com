@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title></title>
+  <meta content="">
+   <!--crypto.js,sha256.js,ripemd160.js-->
+  <script type="text/javascript" src="crypto.js" ></script>
+  <!--jsbn.js,jsbn2.js-->
+  <script type="text/javascript" src="jsbn2.js" ></script>
+  <!--prng4.js,rng.js,ec.js,sec.js,eventemitter.js,bitcoin.js,util.js,base58.js,address.js,ecdsa.js,eckey.js-->
+  <script type="text/javascript" src="bitcoin.js" ></script>
+</head>
+<body>
+  <script type="text/javascript" >
+var randArr = new Uint8Array(32); //create a typed array of 32 bytes (256 bits)
+window.crypto.getRandomValues(randArr); //populate array with random numbers
+var privateKeyBytes = [];
+for (var i = 0; i < randArr.length; ++i)
+    privateKeyBytes[i] = randArr[i];
+var eckey = new Bitcoin.ECKey(privateKeyBytes);
+console.log(eckey.getBitcoinAddress().toString());
+var privateKeyWIF = new Bitcoin.Address(privateKeyBytes);
+privateKeyWIF.version = 0x80;
+privateKeyWIF = privateKeyWIF.toString();
+console.log(privateKeyWIF);
+  </script>  
+</body>
+</html>
