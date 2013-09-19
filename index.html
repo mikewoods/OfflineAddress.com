@@ -1,15 +1,27 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title></title>
-  <meta content="">
-   <!--crypto.js,sha256.js,ripemd160.js-->
-  <script type="text/javascript" src="crypto.js" ></script>
-  <!--jsbn.js,jsbn2.js-->
-  <script type="text/javascript" src="jsbn2.js" ></script>
-  <!--prng4.js,rng.js,ec.js,sec.js,eventemitter.js,bitcoin.js,util.js,base58.js,address.js,ecdsa.js,eckey.js-->
-  <script type="text/javascript" src="bitcoin.js" ></script>
+	<meta charset="utf-8">
+	<title>Title</title>
+	<meta name="description" content="">
+
+	<link rel="stylesheet" href="skeleton.css">
+	<link rel="stylesheet" href="style.css">
+
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!--crypto.js,sha256.js,ripemd160.js-->
+	<script type="text/javascript" src="crypto.js" ></script>
+	<!--jsbn.js,jsbn2.js-->
+	<script type="text/javascript" src="jsbn2.js" ></script>
+	<!--prng4.js,rng.js,ec.js,sec.js,eventemitter.js,bitcoin.js,util.js,base58.js,address.js,ecdsa.js,eckey.js-->
+	<script type="text/javascript" src="bitcoin.js" ></script>
+
 </head>
 <body>
+  <div class="container">
+    <div class="sixteen columns"></div>
+  </div>
   <script type="text/javascript" >
 var randArr = new Uint8Array(32); //create a typed array of 32 bytes (256 bits)
 window.crypto.getRandomValues(randArr); //populate array with random numbers
