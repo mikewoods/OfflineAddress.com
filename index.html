@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Title</title>
-	<meta name="description" content="">
+  <meta charset="utf-8">
+  <title>Title</title>
+  <meta name="description" content="">
 
-	<link rel="stylesheet" href="skeleton.css">
-	<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="skeleton.css">
+  <link rel="stylesheet" href="style.css">
 
-	<link rel="shortcut icon" href="favicon.ico">
+  <link rel="shortcut icon" href="favicon.ico">
 
-	<!--crypto.js,sha256.js,ripemd160.js-->
-	<script type="text/javascript" src="crypto.js" ></script>
-	<!--jsbn.js,jsbn2.js-->
-	<script type="text/javascript" src="jsbn2.js" ></script>
-	<!--prng4.js,rng.js,ec.js,sec.js,eventemitter.js,bitcoin.js,util.js,base58.js,address.js,ecdsa.js,eckey.js-->
-	<script type="text/javascript" src="bitcoin.js" ></script>
+  <!--crypto.js,sha256.js,ripemd160.js-->
+  <script type="text/javascript" src="crypto.js" ></script>
+  <!--jsbn.js,jsbn2.js-->
+  <script type="text/javascript" src="jsbn2.js" ></script>
+  <!--prng4.js,rng.js,ec.js,sec.js,eventemitter.js,bitcoin.js,util.js,base58.js,address.js,ecdsa.js,eckey.js-->
+  <script type="text/javascript" src="bitcoin.js" ></script>
 
 </head>
 <body>
+  <div id="stripe">
   <div class="container">
-    <div class="sixteen columns"></div>
+    <div class="sixteen columns">
+      <div class="seven columns alpha">
+        <h1 class="stripe-text left">Offline Bitcoin Wallet</h1>
+      </div>
+
+      <div class="two columns">
+        <h1 class="stripe-text center">B</h1>
+      </div>
+
+      <div class="seven columns omega">
+        <h1 class="stripe-text right">Generate Secure Addresses</h1>
+      </div>
+    </div>
+  </div><img alt="shield" src="shield.png"></div>
+
+  <div id="main-content">
+    <div class="container">
+      <div class="sixteen columns">
+        <div class="two-thirds column alpha main-left">
+          left
+        </div>
+        <div class="one-third column alpha main-right">
+          right
+        </div>
+        <p>asdf</p>
+      </div>
+    </div>
   </div>
+
+  <div id="footer">
+    <div class="container">
+      <p class="remove-bottom">Copyright © 2013. Copyrights are included in the code.</p>
+    </div>
+  </div>
+
+
   <script type="text/javascript" >
 var randArr = new Uint8Array(32); //create a typed array of 32 bytes (256 bits)
 window.crypto.getRandomValues(randArr); //populate array with random numbers

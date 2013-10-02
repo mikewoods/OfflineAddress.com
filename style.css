@@ -1,5 +1,77 @@
+#stripe {
+  height: 80px;
+  margin: 65px -10px 0;
+  text-align: center;
+  background-color: #186C9D;
+  box-shadow: 0 8px 10px #084366;
+  position: relative;
+  z-index: 1;
+}
+
+#footer {
+  height: 25px;
+  margin: 0 -10px;
+  padding-top: 5px;
+  text-align: center;
+  background-color: #084366;
+  box-shadow: 0 0 2px #084366;
+  position: relative;
+  z-index: 1;
+  color: #ccc;
+  font-size: 11px;
+  font-style: italic;
+}
+
+#stripe img {
+  z-index: 2;
+  margin-top: -140px;
+  height: 200px;
+}
+
+#stripe .stripe-text {
+  padding: 30px 0;
+  margin-bottom: 0;
+  color: #eee;
+}
+
+#stripe .stripe-text.center {
+  font-size: 72px;
+}
+
+#stripe .stripe-text.left {
+  text-align: right;
+  margin-right: 35px;
+}
+
+#stripe .stripe-text.right {
+  text-align: left;
+  margin-left: 30px;
+}
+
+#stripe .stripe-text.right,#stripe .stripe-text.left {
+  font-size: 28px;
+  font-style: italic;
+}
+
+#main-content {
+  background: url(img/pattern.jpg) #e8e8e8 repeat;
+}
+
+#main-content .container {
+  padding-top: 50px;
+  background: #fcfcfc;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+}
+
+#main-content .main-left {
+  background-color: #567;
+}
+
+#main-content .main-right {
+  background-color: #765;
+}
 
 
-
-/* Smaller than standard 960 (devices and browsers) */
-@media only screen and (max-width: 959px) {}
+@media only screen and (max-width: 959px) {
+}
