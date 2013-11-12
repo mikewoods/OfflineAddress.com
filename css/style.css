@@ -1,0 +1,292 @@
+/* stripe */
+#stripe {
+  height: 80px;
+  margin: 65px 0 0;
+  text-align: center;
+  background-color: #186C9D;
+  box-shadow: 0 8px 10px #084366;
+  position: relative;
+  z-index: 1;
+}
+
+#stripe h1 span {
+  font-weight: 700;
+  color: #fbaf52;
+}
+
+#stripe img {
+  z-index: 2;
+  margin-top: -140px;
+  height: 200px;
+}
+
+#stripe .stripe-text {
+  padding: 30px 0;
+  margin-bottom: 0;
+  color: #eee;
+}
+
+#stripe .stripe-text.center {
+  font-size: 72px;
+}
+
+#stripe .stripe-text.left {
+  text-align: right;
+  margin-right: 35px;
+}
+
+#stripe .stripe-text.right {
+  text-align: left;
+  margin-left: 30px;
+}
+
+#stripe .stripe-text.right,#stripe .stripe-text.left {
+  font-size: 28px;
+  font-style: italic;
+}
+
+/* footer */
+#footer {
+  height: 25px;
+  padding-top: 5px;
+  margin-bottom: 1px;
+  text-align: center;
+  background-color: #084366;
+  box-shadow: 0 0 2px #084366;
+  position: relative;
+  z-index: 1;
+  color: #eee;
+  font-size: 11px;
+  font-style: italic;
+}
+
+/* content */
+#main-content {
+  background: url(../img/pattern.jpg) #e8e8e8 repeat;
+}
+
+#main-content .container {
+  padding-top: 50px;
+  background: #fcfcfc;
+  border-left: 1px solid #f8f8f8;
+  border-right: 1px solid #f8f8f8;
+}
+
+#main-content .main-right {
+  padding-top: 50px;
+}
+
+/* li - right side */
+.main-right li {
+  background: url(../img/lock.png) #f6f6f6 no-repeat left top;
+  padding: 10px 5px 18px 30px;
+  margin-bottom: 20px;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  box-shadow: 3px 4px 6px #ccc;
+}
+
+.main-right li:hover {
+  background: url(../img/lock-hover.png) #f6f6f6 no-repeat left top;
+  border: 1px solid #e2e2e2;
+  box-shadow: 3px 4px 6px #aaa;
+}
+
+.main-right li h2 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #186C9D;
+}
+
+.main-right li .li-explanation {
+  font-size: 12px;
+  padding-left: 10px;
+  padding-top: 8px;
+  color: #888;
+}
+
+/* left side */
+#main-content .main-left {
+  padding-top: 50px;
+  color: #555;
+}
+
+/* button-set */
+#button-set {
+  padding-left: 2px;
+  position: relative;
+  z-index: 3;
+}
+
+#main-content .main-left button {
+  /* disable opacity on all buttons */
+  opacity: 1;
+}
+
+#main-content .main-left button span {
+  /* override button size */
+  padding: 0 7px;
+}
+
+#main-content .main-left button.not-selected span {
+  color: #186C9D;
+}
+
+#main-content .main-left button.selected {
+  border: 1px solid #186C9D;
+  box-shadow: 0 0 1px #186C9D;
+}
+
+#main-content .main-left button.selected span {
+  background-color: #186C9D;
+  color: #eee;
+}
+
+/* randomness */
+#main-content .ui-progressbar {
+  position: relative;
+}
+
+#main-content .progress-label {
+  position: absolute;
+  left: 5%;
+  top: 4px;
+  font-weight: 700;
+  background: #FFF;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+#main-content .ui-progressbar-value {
+  background: #186C9D;
+  border-right: 1px solid #084366;
+}
+
+#knob-div {
+  width: 100px;
+  padding: 2px 1px -5px 3px;
+  background-color: #f8f8f8;
+  border-top-left-radius: 55px;
+  border-top-right-radius: 55px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  /* positioning */
+  position: absolute;
+  margin-left: -50px;
+  margin-top: -50px;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+}
+
+#knob-div {
+  text-align: center;
+}
+
+#knob-div #randomness-p {
+  font-weight: 700;
+  color: #ccc;
+}
+
+#button-set-div {
+  position: absolute;
+  top: -35px;
+  left: 15px;
+  z-index: 4;
+  font-size: 14px;
+}
+
+#input-description-div {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  z-index: 4;
+  font-size: 14px;
+}
+
+#input-div {
+  position: relative;
+}
+
+#mouse-canvas {
+  width: 100%;
+  height: 600px;
+  background: #f2f2f2;
+  border-radius: 5px;
+  border: 1px solid #e2e2e2;
+  box-shadow: 1px 2px 6px #aaa;
+}
+
+#generate-button-div {
+  position: absolute;
+  margin-left: -65px;
+  left: 50%;
+  margin-top: -32px;
+  top: 50%;
+  z-index: 4;
+  font-size: 14px;
+}
+
+/* generate adresses button */
+#generate-button-div button {
+  width: 130px;
+  box-shadow: 0 0 8px #999;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+}
+
+#main-content #generate-button-div button span {
+  padding: 7px 0; /* override jQuery */
+  background-color: #186C9D;
+  color: #eee;
+  font-size: 16px;
+}
+
+#generate-button-div button:hover {
+  box-shadow: 0 0 20px #aaa;
+  border: 1px solid #bbb;
+}
+
+#main-content #generate-button-div button span:hover {
+  background-color: #f69319;
+}
+
+/* rest */
+.b {
+  color: #186C9D;
+  font-weight: 700;
+}
+
+/* overlay, spinner */
+#wait-div .my-ui-widget-overlay {
+  background: #666 url(../img/my-overlay.png) 50% 50% repeat;
+  filter: Alpha(Opacity=20);
+  opacity: 0.2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+}
+
+#wait-div p {
+  font-size: 24px;
+/*font-weight: bold;*/
+  text-shadow: 1px 2px 3px #fff;
+  background: url(../img/spinner.gif) #e4e4e4 no-repeat left center;
+  border: 1px solid #f69319;
+  padding: 15px 15px 15px 50px;
+  border-radius: 35px;
+  box-shadow: 0 0 10px #f6f6f6;
+  color: #f69319;
+  margin-left: -135px;
+  left: 50%;
+  top: 40%;
+  z-index: 99;
+  position: absolute;
+}
+
+@media only screen and (max-width: 959px) {
+}
+ 

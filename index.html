@@ -4,71 +4,344 @@
   <meta charset="utf-8">
   <title>Title</title>
   <meta name="description" content="">
-
-  <link rel="stylesheet" href="skeleton.css">
-  <link rel="stylesheet" href="style.css">
-
+  
   <link rel="shortcut icon" href="favicon.ico">
+  
+  <!-- skeleton -->
+  <link rel="stylesheet" href="css/skeleton.css">
+  <!-- custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
 
-  <!--crypto.js,sha256.js,ripemd160.js-->
-  <script type="text/javascript" src="crypto.js" ></script>
-  <!--jsbn.js,jsbn2.js-->
-  <script type="text/javascript" src="jsbn2.js" ></script>
-  <!--prng4.js,rng.js,ec.js,sec.js,eventemitter.js,bitcoin.js,util.js,base58.js,address.js,ecdsa.js,eckey.js-->
-  <script type="text/javascript" src="bitcoin.js" ></script>
-
+  <!-- crypto.js, sha256.js, ripemd160.js -->
+  <script type="text/javascript" src="js/crypto.js" ></script>
+  <!-- jsbn.js, jsbn2.js -->
+  <script type="text/javascript" src="js/jsbn2.js" ></script>
+  <!-- prng4.js, rng.js, ec.js, sec.js, eventemitter.js, bitcoin.js, util.js, base58.js, address.js, ecdsa.js, eckey.js -->
+  <script type="text/javascript" src="js/bitcoin.js" ></script>
+  
+  <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery-1.9.1.js" ></script>
+  <!-- jQuery UI -->
+  <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+  <!-- jQuery plugin - knob -->
+  <script type="text/javascript" src="js/jquery.knob.js" ></script>
+  
 </head>
 <body>
-  <div id="stripe">
+
+
+<div id="stripe">
   <div class="container">
     <div class="sixteen columns">
       <div class="seven columns alpha">
-        <h1 class="stripe-text left">Offline Bitcoin Wallet</h1>
+        <h1 class="stripe-text left"> Offline <span>Bitcoin</span> Wallet </h1>
       </div>
-
       <div class="two columns">
-        <h1 class="stripe-text center">B</h1>
+        <h1 class="stripe-text center"> B </h1>
       </div>
-
       <div class="seven columns omega">
-        <h1 class="stripe-text right">Generate Secure Addresses</h1>
-      </div>
-    </div>
-  </div><img alt="shield" src="shield.png"></div>
-
-  <div id="main-content">
-    <div class="container">
-      <div class="sixteen columns">
-        <div class="two-thirds column alpha main-left">
-          left
-        </div>
-        <div class="one-third column alpha main-right">
-          right
-        </div>
-        <p>asdf</p>
+        <h1 class="stripe-text right"> Generate <span>Secure</span> Addresses </h1>
       </div>
     </div>
   </div>
+  <img src="img/shield.png" alt="shield"/>
+</div>
 
-  <div id="footer">
-    <div class="container">
-      <p class="remove-bottom">Copyright © 2013. Copyrights are included in the code.</p>
+<div id="main-content">
+  <div class="container" >
+    <div class="sixteen columns">
+      <div class="two-thirds column alpha">
+        <div class="main-left">
+          <div id="input-div">
+            <div id="button-set-div">
+              <p class="remove-bottom">
+                Generate
+                <span id="button-set">
+                  <button id="button-1" class="not-selected">1</button>
+                  <button id="button-10" class="not-selected">10</button>
+                  <button id="button-100" class="not-selected">100</button>
+                  <button id="button-1000" class="not-selected">1000</button>
+                </span>
+                Bitcoin addresses.
+              </p>
+            </div>
+            <div id="input-description-div">
+              <p class="remove-bottom">
+                Shake your mouse to add randomness - to create <span class="b">secure</span> addresses.
+              </p>
+            </div>
+            <div id="knob-div">
+              <input id="knob" data-linecap=round data-readOnly=true data-angleOffset=-125 data-angleArc=250
+                data-width="99" data-height="82"  data-fgColor="#186C9D" data-bgColor="#ddd" data-thickness=.3 value="0">
+              <p class="remove-bottom" id="randomness-p"> Randomness </p>
+            </div>
+            <div id="generate-button-div">
+              <button>Generate Addresses</button>
+            </div>
+            <canvas id="mouse-canvas">
+              <p>Unfortunately, your browser is currently unsupported. Please use one of the supported browsers.</p>
+              <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a href="http://www.mozilla.com">Firefox</a>,
+                <a href="http://www.apple.com/safari">Safari</a>, and <a href="http://www.konqueror.org">Konqueror</a>.
+              </p>
+            </canvas>
+          </div>
+        </div>
+      </div>
+      <div class="one-third column omega main-right">
+        <ul>
+          <li>
+            <h2> Safest offline wallet generator! </h2>
+            <div class="li-explanation">
+               explanation 
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+      
     </div>
   </div>
+</div>
 
+<div id="dialog-confirm" title="You're still online!">
+  <span class="ui-icon ui-icon-alert" style="float:left; margin: 3px 10px 20px 0;"></span>
+  <p style="padding-left: 25px;">
+    Are you sure? Are you sure? Are you sure? Are you sure? Are you sure? Are you sure? Are you sure? </p>
+</div>
+<div id="wait-div">
+   <div class="my-ui-widget-overlay"> </div>
+   <p> <span>Please wait...</span> </p>
+</div>
+<div id="footer">
+  <div class="container">
+    <p class="remove-bottom"> Copyright &copy 2013. Copyrights are included in the code. </p>
+  </div>
+</div>
 
-  <script type="text/javascript" >
-var randArr = new Uint8Array(32); //create a typed array of 32 bytes (256 bits)
-window.crypto.getRandomValues(randArr); //populate array with random numbers
-var privateKeyBytes = [];
-for (var i = 0; i < randArr.length; ++i)
-    privateKeyBytes[i] = randArr[i];
-var eckey = new Bitcoin.ECKey(privateKeyBytes);
-console.log(eckey.getBitcoinAddress().toString());
-var privateKeyWIF = new Bitcoin.Address(privateKeyBytes);
-privateKeyWIF.version = 0x80;
-privateKeyWIF = privateKeyWIF.toString();
-console.log(privateKeyWIF);
-  </script>  
+<script type="text/javascript" >
+
+var randomnessContainer = new function() {
+  this.array = [];
+  this.neededLength;
+  this.numAdresses;
+  this.position = 0;
+  this.addPointToRandomness = function(x, y, progressCallback) {
+    if (x === undefined || y === undefined)
+      return;
+    if (this.isFull())
+      return;
+    this.array.push(x & 0xff);
+    this.array.push(y & 0xff);
+    progressCallback((this.array.length * 100) / this.neededLength);
+  };
+  this.isFull = function() {
+    return this.array.length >= this.neededLength;
+  };
+  this.getNext32Bytes = function() {
+    var retArray = [];
+    for (var i = 0; i < 32; i++) {
+      retArray[i] = this.array[this.position++];
+      if (this.position >= this.array.length)
+        this.position = 0;
+    }
+    return retArray;
+  };
+};
+
+function generate() {
+  var res = generateNextAddress();
+  alert(res.address + " " + res.key);
+  var res = generateNextAddress();
+  alert(res.address + " " + res.key);
+}
+
+function generateNextAddress() {
+  var array32byte = randomnessContainer.getNext32Bytes();
+  var eckey = new Bitcoin.ECKey(array32byte);
+  var BTCaddress = eckey.getBitcoinAddress().toString();
+  var privateKeyWIF = new Bitcoin.Address(array32byte);
+  privateKeyWIF.version = 0x80;
+  BTCprivateKey = privateKeyWIF.toString();
+  var x = new Object();
+  x.address = BTCaddress;
+  x.key = BTCprivateKey;
+  return x;
+}
+
+$(function() {
+  $("#button-set").buttonset();
+  $("#button-set button").click(function() {
+    window.location.replace("?n=" + $(this).text());
+  });
+  var n = parseInt(getParameterByName("n"), 10);
+  if (n !== 1 && n !== 100 && n !== 1000)
+    n = 10;
+  randomnessContainer.numAdresses = n;
+  randomnessContainer.neededLength = (n + 1) * 32;
+  $("#button-" + n).button("disable").removeClass("not-selected").addClass("selected");
+
+  var isKnobFull = false;
+  $("#knob").knob();
+  function randomnessProgress(val) {
+    if (val < 100)
+      $("#knob").val(val).trigger('change');
+    else {
+      $("#knob").val(100).trigger('change');
+      isKnobFull = true;
+      $("#randomness-p").css("color", "#186C9D");
+      $("#knob-div").hide("fade", {}, 800, function() {
+        $("#generate-button-div button").show("fade", {}, 800);
+      });
+    }
+  }
+
+  // canvas stuff
+  var startedToDraw = false;
+  canvas = document.getElementById('mouse-canvas');
+  var jQCanvas = $("#mouse-canvas")
+  canvas.width = jQCanvas.width();
+  canvas.height = jQCanvas.height();
+  var offset = jQCanvas.offset();
+  var offsettime = new Date().getTime();
+  var canWidthCenter = parseInt(jQCanvas.width() / 2);
+  var canHeightCenter = parseInt(jQCanvas.height() / 2);
+  $(window).resize(function() {
+    canvas.width = jQCanvas.width();
+    canvas.height = jQCanvas.height();
+    offset = jQCanvas.offset();
+    canWidthCenter = parseInt(jQCanvas.width() / 2);
+    canHeightCenter = parseInt(jQCanvas.height() / 2);
+  });
+  var context = canvas.getContext('2d');
+  var arrayX = [];
+  var arrayY = [];
+  var lastDrawTime = new Date().getTime();
+  var computePosition = function(value, maxI, center, i) {
+    i = (maxI - i) * (maxI - i);
+    maxI = maxI * maxI;
+    i = maxI - i;
+    return (i * value + (maxI - i) * center) / maxI;
+  };
+  var drawXY = function(x, y) {
+    if (new Date().getTime() - lastDrawTime < 40)
+      return;
+    if (x !== undefined)
+      arrayX[21] = x;
+    if (y !== undefined)
+      arrayY[21] = y;
+    randomnessContainer.addPointToRandomness(arrayX[1], arrayY[1], randomnessProgress);
+    arrayX.shift();
+    arrayY.shift();
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    var shrinkConst = 19
+    var maxCircle = 5;
+    for (var i = 0; i <= 20; i++) {
+      if (arrayX[i] === undefined || arrayY[i] === undefined)
+        continue;
+      context.beginPath();
+      if (isKnobFull == true) {
+        context.strokeStyle = '#186C9D';
+        context.fillStyle = '#186C9D';
+      }
+      if (i > shrinkConst) {
+        if (isKnobFull == false) {
+          context.strokeStyle = '#f69319';
+          context.fillStyle = '#f69319';
+        }
+        context.arc(arrayX[i], arrayY[i], maxCircle, 0, 2 * Math.PI, false);
+      } 
+      else {
+        context.strokeStyle = '#186C9D';
+        context.fillStyle = '#186C9D';
+        context.arc(computePosition(arrayX[i], shrinkConst, canWidthCenter, i), computePosition(arrayY[i], shrinkConst, canHeightCenter, i), i * maxCircle / shrinkConst, 0, 2 * Math.PI, false);
+      }
+      context.closePath();
+      context.fill();
+      context.stroke();
+    }
+    lastDrawTime = new Date().getTime();
+    if (arrayX.length !== 0)
+      setTimeout(drawXY, 50);
+  }
+  
+  $("#mouse-canvas").mousemove(function(e) {
+    if (new Date().getTime() - offsettime > 1000) {
+      offset = jQCanvas.offset();
+      offsettime = new Date().getTime();
+    }
+    var x = e.pageX - offset.left;
+    var y = e.pageY - offset.top;
+    if (!startedToDraw) {
+      startedToDraw = true;
+      context.strokeStyle = '#186C9D';
+      context.fillStyle = '#186C9D';
+      context.lineWidth = 1;
+      context.moveTo(x, y);
+    } else {
+      drawXY(x, y);
+    }
+  });
+
+  $("#dialog-confirm").hide();
+  $("#generate-button-div button").click(function() {
+    $("#generate-button-div button").blur();
+    testIsOnline(function(isTrue) {
+      if (isTrue) {
+        $("#dialog-confirm").dialog({
+          resizable: false,
+          width: 500,
+          modal: true,
+          open: function(event, ui) {
+            $('.ui-dialog :button').blur();
+          },
+          buttons: {
+            "Continue anyway": function() {
+              $(this).dialog("close");
+              generate();
+            },
+            Cancel: function() {
+              $(this).dialog("close");
+            },
+          }
+        });
+      } 
+      else {
+        generate();
+      }
+    });
+  });
+  
+  $("#wait-div").hide();
+});
+
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), 
+  results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function testIsOnline(callback) {
+  $.ajax({
+    url: "amionline",
+    timeout: 2000,
+    success: function() {
+      callback(true);
+    },
+    error: function() {
+      $("#wait-div").hide();
+      callback(false);
+    },
+    beforeSend: function() {
+      $("#wait-div").hide();
+      $("#wait-div").show();
+    },
+    dataType: "json"
+  });
+}
+</script>
+
 </body>
 </html>
