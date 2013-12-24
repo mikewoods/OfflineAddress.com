@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Title</title>
-  <meta name="description" content="">
+  <title>OfflineAddress.com - The safest Bitcoin wallet generator.</title>
+  <meta name="description" content="Generate secure offline Bitcoin addresses. Truly random, open source, client-side BTC wallet generator.">
   
   <link rel="shortcut icon" href="favicon.ico">
   
@@ -20,30 +20,39 @@
   <script type="text/javascript" src="js/jsbn2.js" ></script>
   <!-- prng4.js, rng.js, ec.js, sec.js, eventemitter.js, bitcoin.js, util.js, base58.js, address.js, ecdsa.js, eckey.js -->
   <script type="text/javascript" src="js/bitcoin.js" ></script>
-  
+
   <!-- jQuery -->
   <script type="text/javascript" src="js/jquery-1.9.1.js" ></script>
   <!-- jQuery UI -->
   <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js" ></script>
   <!-- jQuery plugin - knob -->
   <script type="text/javascript" src="js/jquery.knob.js" ></script>
-  
+  <!-- jQuery plugin for QR codes -->
+  <script type="text/javascript" src="js/jquery.qrcode-0.7.0.min.js" ></script>
+
 </head>
 <body>
-
 
 <div id="stripe">
   <div class="container">
     <div class="sixteen columns">
       <div class="seven columns alpha">
-        <h1 class="stripe-text left"> Offline <span>Bitcoin</span> Wallet </h1>
+        <h1 class="stripe-text left"> Offline <span>Bitcoin</span> Wallet  </h1>
       </div>
       <div class="two columns">
-        <h1 class="stripe-text center"> B </h1>
+        <a href="/"><h1 class="stripe-text center"></h1></a>
       </div>
       <div class="seven columns omega">
         <h1 class="stripe-text right"> Generate <span>Secure</span> Addresses </h1>
       </div>
+      <p id="above-stripe" class="remove-bottom">
+        <span>Donate:</span> 17edQ3AseQtMHibLwCmTCqb9gk7zvj63cg <br/> 
+        <span>GitHub</span>: <a href="https://github.com/">GitHub</a> &nbsp;
+        <span class="commit-id"> <span>Commit ID</span>: 000000 </span>
+      </p>
+      <p id="below-stripe" class="remove-bottom">
+        Open Source, JavaScript, Client-Side
+      </p>
     </div>
   </div>
   <img src="img/shield.png" alt="shield"/>
@@ -52,6 +61,41 @@
 <div id="main-content">
   <div class="container" >
     <div class="sixteen columns">
+        <div id="tabs-results">
+          <button id="back-to-homepage">Back to Homepage</button>
+          <p id="tabs-desc"> Show generated addresses as: </p>
+          <ul>
+            <li><a href="#tabs-1">Individual addresses</a></li>
+            <li><a href="#tabs-2">Printable notes</a></li>
+            <li><a href="#tabs-3">Bulk format</a></li>
+          </ul>
+          <p id="tabs-post-desc"> These QR codes are robust, they will work even if part is missing. All private keys are shown in Wallet Import Format (WIF).</p>
+
+          <div id="tabs-1" class="clearfix">
+            <div id="individual-addresses"></div>
+          </div>
+          <div id="tabs-2" class="clearfix">
+            <div id="bills">
+              <div class="clearfix" id="bill-buttons">
+                <p class="remove-bottom" id="select-bills-design"> Select your preferred design: </p>
+                <span>
+                  <button id="button-green" class="selected">Green</button>
+                  <button id="button-yellow">Yellow</button>
+                  <button id="button-purple">DrEvil</button>
+                  <button id="button-gray">Gray</button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div id="tabs-3" class="clearfix">
+            <div id="update-bulk-div">
+              <button id="update-bulk">Update</button>
+              <input id="bulk-format-input" type="text" value='  {"address", "key"},'>
+              <div> <p> Format: </p> </div>
+            </div>
+            <textarea id="results-textarea"> </textarea>
+          </div>
+        </div>
       <div class="two-thirds column alpha">
         <div class="main-left">
           <div id="input-div">
@@ -94,10 +138,34 @@
           <li>
             <h2> Safest offline wallet generator! </h2>
             <div class="li-explanation">
-               explanation 
+              <p>What if we <span class="b">steal</span> you private key? </p>
+              <p>We can't, this site will <span class="b">warn you</span> if you're trying to generate Bitcoin addresses while connected to the internet. </p>
+              <p>Just load this site, <span class="b">disconnect</span> from internet, and generate your addresses. </p>
             </div>
           </li>
-          
+          <li>
+            <h2> Be as secure as possible! </h2>
+            <div class="li-explanation">
+              <p>To be secure (in case your computer is infected) use this site from <a href="https://en.wikipedia.org/wiki/Live_CD"><span class="b">live disc</span></a>. </p>
+              <p>On existing operating system - print keys instead of copying them (some viruses steal clipboard content). </p>
+            </div>
+          </li>
+          <li>
+            <h2> Truly random private key! </h2>
+            <div class="li-explanation">
+              <p>Random numbers <span class="b">can not</span> be generate inside a computer, and pseudorandom number can be easily <span class="b">predicted</span>.</p>
+              <p>Keys that are not random enough can be guessed, and Bitcoins stolen.</p>
+              <p>Real randomness has to be <span class="b">human-provided</span>.</p>
+              <p>Dots flying around are real random data used to generate truly random private keys and addresses.</p>
+            </div>
+          </li>
+          <li>
+            <h2> Open source - pull us on GitHub! </h2>
+            <div class="li-explanation">
+             <p>This is open source service - check the code at <a href="/"><span class="b">GitHub</span></a>.</p>
+             <p>If you like this site consider donating BTC to <span id="smaller-address">17edQ3AseQtMHibLwCmTCqb9gk7zvj63cg</span>.</p>
+            </div>
+          </li>
         </ul>
       </div>
       
@@ -107,58 +175,68 @@
 
 <div id="dialog-confirm" title="You're still online!">
   <span class="ui-icon ui-icon-alert" style="float:left; margin: 3px 10px 20px 0;"></span>
-  <p style="padding-left: 25px;">
-    Are you sure? Are you sure? Are you sure? Are you sure? Are you sure? Are you sure? Are you sure? </p>
+  <div style="padding-left: 25px;">
+    <p>We could be the bad guys and steal your Bitcoins - we're not, but <span class="b">we could be!</span> </p>
+    <p>Offline addresses should <span class="b">never</span> exist on computer that's connected to the internet! </p>
+    <p>Please click cancel, unplug network cable and disconnect from any Wi-Fi (or turn on Airplane mode). </p>
+    <p class="smaller">(To be secure in case your device is infected, we advise you to use this service from a <a href="https://en.wikipedia.org/wiki/Live_CD"><span class="b">live disc</span></a>) </p>
+  </div>
 </div>
 <div id="wait-div">
    <div class="my-ui-widget-overlay"> </div>
-   <p> <span>Please wait...</span> </p>
+   <p> <span>Please wait...</span><span id="wait-more"><br />This might take a while.</span> </p>
 </div>
 <div id="footer">
   <div class="container">
-    <p class="remove-bottom"> Copyright &copy 2013. Copyrights are included in the code. </p>
+    <p class="remove-bottom"> Copyright <span class="copyright-sign">&copy</span> 2013-<script>document.write(new Date().getFullYear())</script> OfflineAddress.com. Copyrights are included in the code. </p>
   </div>
 </div>
 
 <script type="text/javascript" >
 
-var randomnessContainer = new function() {
-  this.array = [];
-  this.neededLength;
-  this.numAdresses;
-  this.position = 0;
-  this.addPointToRandomness = function(x, y, progressCallback) {
-    if (x === undefined || y === undefined)
-      return;
-    if (this.isFull())
-      return;
-    this.array.push(x & 0xff);
-    this.array.push(y & 0xff);
-    progressCallback((this.array.length * 100) / this.neededLength);
-  };
-  this.isFull = function() {
-    return this.array.length >= this.neededLength;
-  };
-  this.getNext32Bytes = function() {
-    var retArray = [];
-    for (var i = 0; i < 32; i++) {
-      retArray[i] = this.array[this.position++];
-      if (this.position >= this.array.length)
-        this.position = 0;
-    }
-    return retArray;
-  };
-};
-
-function generate() {
-  var res = generateNextAddress();
-  alert(res.address + " " + res.key);
-  var res = generateNextAddress();
-  alert(res.address + " " + res.key);
+var results = [];
+function generate(n, callback) { // create Bitcoin addresses and private keys
+  $("#wait-div").show();
+  if (n > 10)
+    $("#wait-more").show();
+  results = [];
+  if (window.Worker) { // use HTML5 Workers if available
+    var max_workers = 3; // 3 workers, optimal for 4-core processors
+    var workers = [];
+    for (var i = 0; i < max_workers; i++)
+      workers[i] = new Worker('js/worker.js');
+    for (var i = 0; i < max_workers; i++)
+      workers[i].onmessage = function(event) { // called from multiple threads
+        results.push(event.data);
+        if (results.length == n) {
+          $("#wait-more").hide();
+          $("#wait-div").hide();
+          callback();
+        }
+      };
+    for (var i = 0; i < n; i++)
+      workers[i % max_workers].postMessage(randomnessContainer.getNext32Bytes());
+  } 
+  else { // older browsers
+    calbackAfterRecursive = callback;
+    setTimeout("recursive(" + (n - 1) + ")", 100);
+  }
 }
 
-function generateNextAddress() {
+var calbackAfterRecursive;
+var recursive = function(i) { // recursive implementaion with 'sleep()' to give UI some respondness
   var array32byte = randomnessContainer.getNext32Bytes();
+  results[i] = generateOneAddress(array32byte);
+  if (i != 0)
+    setTimeout("recursive(" + (i - 1) + ")", 2);
+  else {
+    $("#wait-more").hide();
+    $("#wait-div").hide();
+    calbackAfterRecursive();
+  }
+}
+
+function generateOneAddress(array32byte) {
   var eckey = new Bitcoin.ECKey(array32byte);
   var BTCaddress = eckey.getBitcoinAddress().toString();
   var privateKeyWIF = new Bitcoin.Address(array32byte);
@@ -170,20 +248,55 @@ function generateNextAddress() {
   return x;
 }
 
-$(function() {
+/* few vars for bills rendering */
+var updateIndividualResults;
+var updateNotesResults;
+var cancelUpdateNotesResults = false;
+var cbi = 0; // current bill index
+var billImage = [];
+billImage[0] = new Image(); billImage[0].src = "img/bill-green.png";
+billImage[1] = new Image(); billImage[1].src = "img/bill-yellow.png";
+billImage[2] = new Image(); billImage[2].src = "img/bill-purple.png";
+billImage[3] = new Image(); billImage[3].src = "img/bill-gray.png";
+var bill = [];
+bill[0] = new Object();
+bill[0].className="type-green";
+bill[0].canvasHeight=364;
+bill[0].leftK=39;  bill[0].topK=76;  bill[0].fillK="#01431d"; bill[0].radiusK=0.3; bill[0].sizeK=144;
+bill[0].leftA=496; bill[0].topA=158; bill[0].fillA="#01431d"; bill[0].radiusA=0.3; bill[0].sizeA=120;
+bill[1] = new Object();
+bill[1].className="type-yellow";
+bill[1].canvasHeight=364;
+bill[1].leftK=501; bill[1].topK=143; bill[1].fillK="#000"; bill[1].radiusK=0; bill[1].sizeK=162;
+bill[1].leftA=27;  bill[1].topA=70;  bill[1].fillA="#000"; bill[1].radiusA=0; bill[1].sizeA=145;
+bill[2] = new Object();
+bill[2].className="type-purple";
+bill[2].canvasHeight=362;
+bill[2].leftK=543; bill[2].topK=195; bill[2].fillK="#be714d"; bill[2].radiusK=0; bill[2].sizeK=114;
+bill[2].leftA=56;  bill[2].topA=95;  bill[2].fillA="#814970"; bill[2].radiusA=0; bill[2].sizeA=114;
+bill[3] = new Object();
+bill[3].className="type-gray";
+bill[3].canvasHeight=296;
+bill[3].leftK=536; bill[3].topK=157; bill[3].fillK="#333"; bill[3].radiusK=0; bill[3].sizeK=111;
+bill[3].leftA=32;  bill[3].topA=26;  bill[3].fillA="#333"; bill[3].radiusA=0; bill[3].sizeA=111;
+
+$(function() { // UI related initialization and handlers
+  
   $("#button-set").buttonset();
   $("#button-set button").click(function() {
+    // persist changes for user Bookmarking
     window.location.replace("?n=" + $(this).text());
   });
-  var n = parseInt(getParameterByName("n"), 10);
+  n = parseInt(getParameterByName("n"), 10);
   if (n !== 1 && n !== 100 && n !== 1000)
     n = 10;
-  randomnessContainer.numAdresses = n;
-  randomnessContainer.neededLength = (n + 1) * 32;
+  randomnessContainer.setNumAddresses(n);
   $("#button-" + n).button("disable").removeClass("not-selected").addClass("selected");
 
+  // init knob
   var isKnobFull = false;
   $("#knob").knob();
+  // progress
   function randomnessProgress(val) {
     if (val < 100)
       $("#knob").val(val).trigger('change');
@@ -196,7 +309,54 @@ $(function() {
       });
     }
   }
-
+  
+  var restartBillsRendering = function() {
+    cancelUpdateNotesResults = true;
+    $(".single-bill").remove();
+    try {
+      clearTimeout(notesRenderTimeout);
+    } catch(e) {}
+    updateNotesResults(0);
+  }
+  $("#bill-buttons span").buttonset();
+  $("#button-green").click(function(event) {
+    $(this).blur();
+    $("#bill-buttons .selected").removeClass("selected");
+    $(this).addClass("selected");
+    if (cbi != 0) {
+      cbi = 0;
+      restartBillsRendering();
+    }
+  });
+  $("#button-yellow").click(function(event) {
+    $(this).blur();
+    $("#bill-buttons .selected").removeClass("selected");
+    $(this).addClass("selected");
+    if (cbi != 1) {
+      cbi = 1;
+      restartBillsRendering();
+    }
+  });
+  $("#button-purple").click(function(event) {
+    $(this).blur();
+    $("#bill-buttons .selected").removeClass("selected");
+    $(this).addClass("selected");
+    if (cbi != 2) {
+      cbi = 2;
+      restartBillsRendering();
+    }
+  });
+  $("#button-gray").click(function(event) {
+    $(this).blur();
+    $("#bill-buttons .selected").removeClass("selected");
+    $(this).addClass("selected");
+    if (cbi != 3) {
+      cbi = 3;
+      restartBillsRendering();
+    }
+  });
+  getInitRandomness();
+  
   // canvas stuff
   var startedToDraw = false;
   canvas = document.getElementById('mouse-canvas');
@@ -207,7 +367,7 @@ $(function() {
   var offsettime = new Date().getTime();
   var canWidthCenter = parseInt(jQCanvas.width() / 2);
   var canHeightCenter = parseInt(jQCanvas.height() / 2);
-  $(window).resize(function() {
+  $(window).resize(function() { // on resize - update canvas
     canvas.width = jQCanvas.width();
     canvas.height = jQCanvas.height();
     offset = jQCanvas.offset();
@@ -225,6 +385,7 @@ $(function() {
     return (i * value + (maxI - i) * center) / maxI;
   };
   var drawXY = function(x, y) {
+    // skip coordinates that are generated within short time (by fast browser) - they are probably too similar
     if (new Date().getTime() - lastDrawTime < 40)
       return;
     if (x !== undefined)
@@ -265,9 +426,10 @@ $(function() {
     if (arrayX.length !== 0)
       setTimeout(drawXY, 50);
   }
+  $(window).bind("unload", function() { randomnessProgress(0); }); // for bfcache
   
-  $("#mouse-canvas").mousemove(function(e) {
-    if (new Date().getTime() - offsettime > 1000) {
+  $("#mouse-canvas").mousemove(function(e) { // mouse moved
+    if (new Date().getTime() - offsettime > 1000) { // update every sec
       offset = jQCanvas.offset();
       offsettime = new Date().getTime();
     }
@@ -284,22 +446,154 @@ $(function() {
     }
   });
 
+  $("#generate-button-div button").button().hide();
+  $("#update-bulk").button();
+  $("#back-to-homepage").button().click(function() {
+    try { // can fail
+      window.location = "/";
+    } catch(e) {}
+    window.location.reload();
+  });
+  $("#wait-more").hide();
+  $("#wait-div").hide();
   $("#dialog-confirm").hide();
+  $("#tabs-results").tabs({event: "mouseover"});
+  $("#tabs-results").hide();
+  $("#update-bulk").click(function() {
+    $(this).blur();
+    updateBulkResults(results);
+  });
+
+  // update results
+  var updateBulkResults = function() {
+    var bulkFormat = $("#bulk-format-input").val();
+    var prefix = bulkFormat.substring(0, bulkFormat.indexOf("address"));
+    var middle = bulkFormat.substring(bulkFormat.indexOf("address") + 7, bulkFormat.indexOf("key"));
+    var suffix = bulkFormat.substring(bulkFormat.indexOf("key") + 3);
+    
+    var string = "\n";
+    for (var i = 0; i < n; i++) {
+      string += prefix + results[i].address + middle + results[i].key + suffix + "\n";
+    }
+    $("#results-textarea").val(string);
+    $("#results-textarea").attr('rows', n + 3);
+  }
+  
+  updateNotesResults = function(i) { // draw bills
+    // handling interrupt
+    if (i == 2 && cancelUpdateNotesResults == true)
+      cancelUpdateNotesResults = false;
+    if (i > 2 && cancelUpdateNotesResults == true) {
+      cancelUpdateNotesResults = false;
+      return;
+    }
+    var divBill = $("<div/>", {class: 'clearfix single-bill ' + bill[cbi].className});
+    var divBillInner = $("<div/>");
+    var divCanvas = $("<canvas class='bill-canvas' width='680' height='" + bill[cbi].canvasHeight + "'></canvas>");
+    divBillInner.append(divCanvas);
+    divBill.append(divBillInner);
+    $("#bills").append(divBill);
+    var billContext = divCanvas[0].getContext('2d');
+    billContext.drawImage(billImage[cbi], 0, 0);
+    divCanvas.qrcode({
+      render: 'canvas',ecLevel: 'H',left: bill[cbi].leftK,top: bill[cbi].topK,fill: bill[cbi].fillK,radius: bill[cbi].radiusK,
+      size: bill[cbi].sizeK,background: null,text: results[i].key,quiet: 1,
+    });
+    divCanvas.qrcode({
+      render: 'canvas',ecLevel: 'H',left: bill[cbi].leftA,top: bill[cbi].topA,fill: bill[cbi].fillA,radius: bill[cbi].radiusA,
+      size: bill[cbi].sizeA,background: null,text: results[i].address,quiet: 1,
+    });
+    if (cbi == 0 || cbi == 1) {
+      divBillInner.append("<p class='rotate key-desc'>Private Key</p>");
+      divBillInner.append("<p class='rotate address-desc'>Bitcoin Address</p>");
+      divBillInner.append("<p class='rotate key-value'>" + results[i].key + "</p>");
+      divBillInner.append("<p class='rotate address-value'>" + results[i].address + "</p>");
+    } else if (cbi == 2) {
+      divBillInner.append("<p class='address-value'>" + results[i].address + "</p>");
+      divBillInner.append("<p class='rotate key-value'>" + results[i].key + "</p>");
+    } else if (cbi == 3) {
+      divBillInner.append("<p class='address-value'>" + results[i].address + "</p>");
+    }
+    if (i + 1 < n) // loop condition
+       notesRenderTimeout = setTimeout("updateNotesResults(" + (i + 1) + ")", 5); // recursive implementation of loop, to give UI some time for rendering
+  }
+  
+  updateIndividualResults = function(i) { // normal view
+    var divRow = $("<div/>", {class: 'clearfix'});
+    $("#individual-addresses").append(divRow);
+    $("#individual-addresses").append("<hr />");
+    
+    var divAddress = $("<div/></div>", {class: 'qr-code-address'});
+    divInnerAddress = $("<div class='clearfix'></div>")
+    divAddress.append(divInnerAddress);
+    divInnerAddress.qrcode({
+      render: 'canvas',ecLevel: 'H',left: 0,top: 0,fill: '#f69319',
+      size: 150,background: null,text: results[i].address,quiet: 1,
+    });
+    divInnerAddress.append("<div class='comment-on-qr-address'><ul class='remove-bottom'><li>Share</li><li class='comment-no-top'><span>Public</span></li><li><span>Address</span></li><li>Load & Verify</li><li class='remove-bottom'>Get paid</li></ul></div>");
+    divAddress.append("<input type='text' value='" + results[i].address + "' readonly='readonly' class='select-all-on-click'/>");
+    divRow.append(divAddress);
+    
+    var divKey = $("<div/>", {class: 'qr-code-key'});
+    divInnerKey = $("<div class='clearfix'></div>");
+    divKey.append(divInnerKey);
+    divInnerKey.qrcode({
+      render: 'canvas',ecLevel: 'H',left: 0,top: 0,fill: '#186C9D',
+      size: 150,background: null,text: results[i].key,quiet: 1,
+    });
+    divInnerKey.append("<div class='comment-on-qr-key'><ul class='remove-bottom'><li>Hide</li><li class='comment-no-top'><span>Private</span></li><li><span>Key</span></li><li>Spend & Withdraw</li><li class='remove-bottom'>Pay others</li></ul></div>");
+    divKey.append("<input type='text' value='" + results[i].key + "' readonly='readonly' class='select-all-on-click'/>");
+    divRow.append(divKey);
+    
+    if (i + 1 < n) // loop condition
+      setTimeout("updateIndividualResults(" + (i + 1) + ")", 5); // recursive implementation of loop, to give UI some time for rendering
+    else {
+      $(".select-all-on-click").focus(function(event) {
+        $(this).select();
+        $(this).mouseup(function(e) {
+          $(this).unbind("mouseup");
+          return false;
+        });
+      });
+    }
+  }
+  
+  var showResults = function() {
+    if (results.length != n)
+      throw "results.length != n";
+    
+    $("#input-div").fadeOut(500, function() {
+      $("#tabs-results").fadeIn();
+    });
+    $(".main-right").fadeOut(500);
+    
+    if (n > 100) { // two tabs are disabled for 1000
+      $("#tabs-results").tabs("option", "active", 2); // allow only bulk
+      $("#tabs-results").tabs({disabled: [0, 1]});
+    } else {
+      // Update UI. It might take some time to calculate QR codes.
+      updateNotesResults(0);
+      updateIndividualResults(0);
+    }
+    updateBulkResults();
+  }
+  
   $("#generate-button-div button").click(function() {
-    $("#generate-button-div button").blur();
+    $("#generate-button-div button").blur(); // unfocus clicked button
     testIsOnline(function(isTrue) {
+      // open confirm dialog
       if (isTrue) {
         $("#dialog-confirm").dialog({
           resizable: false,
-          width: 500,
+          width: 620,
           modal: true,
           open: function(event, ui) {
-            $('.ui-dialog :button').blur();
+            $('.ui-dialog :button').focus(); // select Cancel as default
           },
           buttons: {
             "Continue anyway": function() {
               $(this).dialog("close");
-              generate();
+              generate(n, showResults);
             },
             Cancel: function() {
               $(this).dialog("close");
@@ -308,13 +602,59 @@ $(function() {
         });
       } 
       else {
-        generate();
+        generate(n, showResults);
       }
     });
   });
-  
-  $("#wait-div").hide();
 });
+
+var randomnessContainer = new function() {
+  this.array = [];
+  this.numAddresses;
+  this.neededLength;
+  this.length = 0;
+  this.position = 0;
+  this.setNumAddresses = function(num) {
+    this.numAddresses = num;
+    this.neededLength = num * 32;
+    if (num == 1)
+      this.neededLength += 32;
+  }
+  this.addPointToRandomness = function(x, y, progressCallback) {
+    if (x === undefined || y === undefined)
+      return;
+    if (this.isFull())
+      return; 
+    this.array[this.position++] ^= x & 0xff;
+    if (this.position == this.neededLength)
+      this.position = 0;
+    this.array[this.position++] ^= y & 0xff;
+    if (this.position == this.neededLength)
+      this.position = 0;
+    this.length += 2;
+    progressCallback((this.length * 100) / this.neededLength);
+  };
+  this.addInitRandomness = function(p) {
+    this.position = (p.timeMillis % this.numAddresses) * 32;
+    for (var i = 0; i < this.neededLength; i++) {
+      this.array[i] = p.rnd & 0xff;
+      p.rnd = nextRnd(p.rnd);
+    }
+  };
+  this.isFull = function() {
+    return this.length >= this.neededLength;
+  };
+  this.cursor = 0;
+  this.getNext32Bytes = function() {
+    var retArray = [];
+    for (var i = 0; i < 32; i++) {
+      retArray[i] = this.array[this.cursor++];
+      if (this.cursor == this.neededLength)
+        this.cursor = 0;
+    }
+    return retArray;
+  };
+};
 
 function getParameterByName(name) {
   name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -323,24 +663,37 @@ function getParameterByName(name) {
   return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function getInitRandomness() {
+  // if user's mouse movements are not random enough
+  $.ajax({
+    url: "getinitrandomness",
+    timeout: 5000,
+    success: function(p) {
+      randomnessContainer.addInitRandomness(p);
+    },
+    dataType: "json"
+  });
+}
+
 function testIsOnline(callback) {
   $.ajax({
     url: "amionline",
-    timeout: 2000,
-    success: function() {
+    timeout: 2000, // wait up to 2 sec for connection test
+    success: function(p) {
+      $("#wait-div").hide();
       callback(true);
     },
-    error: function() {
+    error: function(e) {
       $("#wait-div").hide();
       callback(false);
     },
     beforeSend: function() {
-      $("#wait-div").hide();
       $("#wait-div").show();
     },
     dataType: "json"
   });
 }
+
 </script>
 
 </body>

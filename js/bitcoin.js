@@ -72,9 +72,9 @@ if (rng_pool == null) {
     rng_pool = new Array();
     rng_pptr = 0;
     var t;
-    if (navigator.appName == "Netscape" && navigator.appVersion < "5" && window.crypto) {
+    if (navigator.appName == "Netscape" && navigator.appVersion < "5" && /*window.*/crypto) {
         // Extract entropy (256 bits) from NS4 RNG if available
-        var z = window.crypto.random(32);
+        var z = /*window.*/crypto.random(32);
         for (t = 0; t < z.length; ++t)
             rng_pool[rng_pptr++] = z.charCodeAt(t) & 255;
     }
@@ -85,8 +85,6 @@ if (rng_pool == null) {
     }
     rng_pptr = 0;
     rng_seed_time();
-//rng_seed_int(window.screenX);
-//rng_seed_int(window.screenY);
 }
 
 function rng_get_byte() {
@@ -694,7 +692,7 @@ EventEmitter.augment = function(obj) {
         Bitcoin.EventEmitter = EventEmitter;
     }
 })(
-'object' === typeof module ? module.exports : (window.Bitcoin = {})
+'object' === typeof module ? module.exports : (/*window.*/Bitcoin = {})
 );
 
 // BigInteger monkey patching
@@ -804,11 +802,11 @@ var names = ["log", "debug", "info", "warn", "error", "assert", "dir",
     "dirxml", "group", "groupEnd", "time", "timeEnd", "count", 
     "trace", "profile", "profileEnd"];
 
-if ("undefined" == typeof window.console)
-    window.console = {};
+if ("undefined" == typeof /*window.*/console)
+    /*window.*/console = {};
 for (var i = 0; i < names.length; ++i)
-    if ("undefined" == typeof window.console[names[i]])
-        window.console[names[i]] = function() {
+    if ("undefined" == typeof /*window.*/console[names[i]])
+        /*window.*/console[names[i]] = function() {
         };
 
 // Bitcoin utility functions

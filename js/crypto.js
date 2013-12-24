@@ -13,12 +13,12 @@
  * Ported to Crypto-JS by Stefan Thomas.
  */
 
+// Global Crypto object
+var Crypto = {};
+
 (function() {
     
     var base64map = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
-    // Global Crypto object
-    var Crypto = window.Crypto = {};
 
     // Crypto utilities
     var util = Crypto.util = {
