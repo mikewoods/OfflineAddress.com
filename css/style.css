@@ -477,6 +477,10 @@
   color: #186C9D;
   font-weight: bold;
 }
+.ubuntu-font {
+  font-family: 'Ubuntu Condensed', sans-serif;
+}
+
 /* overlay, spinner */
 #wait-div .my-ui-widget-overlay {
   background:#666 url(../img/my-overlay.png) 50% 50% repeat;

@@ -30,6 +30,9 @@
   <!-- jQuery plugin for QR codes -->
   <script type="text/javascript" src="js/jquery.qrcode-0.7.0.min.js" ></script>
 
+  <!-- preload HTML5 workers to be available offline -->
+  <script type="text/javascript" src="js/worker.js" ></script>
+
 </head>
 <body>
 
@@ -122,7 +125,7 @@
               <p class="remove-bottom" id="randomness-p"> Randomness </p>
             </div>
             <div id="generate-button-div">
-              <button>Generate Addresses</button>
+              <button>Click to Generate Addresses</button>
             </div>
             <canvas id="mouse-canvas">
               <p>Unfortunately, your browser is currently unsupported. Please use one of the supported browsers.</p>
@@ -188,7 +191,7 @@
 </div>
 <div id="footer">
   <div class="container">
-    <p class="remove-bottom"> Copyright <span class="copyright-sign">&copy</span> 2013-<script>document.write(new Date().getFullYear())</script> OfflineAddress.com. Copyrights are included in the code. </p>
+    <p class="remove-bottom"> Copyright <span class="copyright-sign">&copy</span> 2013-<script>document.write(new Date().getFullYear())</script> OfflineAddress.com. Copyrights are included in the code<span class="ubuntu-font">.</span> </p>
   </div>
 </div>
 
@@ -196,6 +199,7 @@
 
 var results = [];
 function generate(n, callback) { // create Bitcoin addresses and private keys
+  $("#generate-button-div button").button("option", "disabled", true);
   $("#wait-div").show();
   if (n > 10)
     $("#wait-more").show();
@@ -446,7 +450,10 @@ $(function() { // UI related initialization and handlers
     }
   });
 
-  $("#generate-button-div button").button().hide();
+  $("#generate-button-div button").button();
+  $("#generate-button-div button").button("option", "disabled", false);
+  $("#generate-button-div button").hide();
+
   $("#update-bulk").button();
   $("#back-to-homepage").button().click(function() {
     try { // can fail

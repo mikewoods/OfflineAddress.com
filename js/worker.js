@@ -1,6 +1,8 @@
-importScripts("crypto.js");
-importScripts("jsbn2.js");
-importScripts("bitcoin.js");
+try {
+  importScripts("crypto.js");
+  importScripts("jsbn2.js");
+  importScripts("bitcoin.js");
+} catch(e) {}
 
 onmessage = function(event) {
   var array32byte = event.data;
