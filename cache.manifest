@@ -1,4 +1,5 @@
 CACHE MANIFEST
+
 # rev 001
 CACHE:
 js/bitcoin.js
@@ -40,6 +41,12 @@ css/ui-lightness/images/ui-icons_228ef1_256x240.png
 css/ui-lightness/images/ui-icons_ef8c08_256x240.png
 css/ui-lightness/images/ui-icons_ffd27a_256x240.png
 css/ui-lightness/images/ui-icons_ffffff_256x240.png
+/
+/?n=1
+/?n=10
+/?n=100
+/?n=1000
 favicon.ico
+
 NETWORK:
 *

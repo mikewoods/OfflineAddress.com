@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>OfflineAddress.com - The safest Bitcoin wallet generator.</title>
   <meta name="description" content="Generate secure offline Bitcoin addresses. Truly random, open source, client-side BTC wallet generator.">
+  <meta http-equiv="cache-control" content="no-cache" >
   
   <link rel="shortcut icon" href="favicon.ico">
   
@@ -613,6 +614,22 @@ $(function() { // UI related initialization and handlers
       }
     });
   });
+  
+  try {
+    if (window.applicationCache) {
+      window.applicationCache.addEventListener('updateready', function(e) {
+        try {
+          if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+            // Browser downloaded new cache,  swap it in and reload the page.
+            window.applicationCache.swapCache();
+            window.location.reload(); 
+          } else {
+            // Manifest didn't changed. Nothing to server.
+          }
+        } catch(e) {}
+      }, false);
+    }
+  } catch(e) {}
 });
 
 var randomnessContainer = new function() {
@@ -700,7 +717,7 @@ function testIsOnline(callback) {
     dataType: "json"
   });
 }
-
+  
 </script>
 
 </body>
