@@ -480,6 +480,17 @@
 .ubuntu-font {
   font-family: 'Ubuntu Condensed', sans-serif;
 }
+#loader p {
+  margin-top: 100px;
+  text-align: center;
+  color: #084366;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 16px;
+}
+#main-container {
+  display: none;
+}
 
 /* overlay, spinner */
 #wait-div .my-ui-widget-overlay {

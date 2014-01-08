@@ -37,7 +37,10 @@
 
 </head>
 <body>
-
+<div id="loader" class="container">
+  <p>Loading the site, please wait.</p>
+</div>
+<div id="main-container">
 <div id="stripe">
   <div class="container">
     <div class="sixteen columns">
@@ -196,7 +199,7 @@
     <p class="remove-bottom"> Copyright <span class="copyright-sign">&copy</span> 2013-<script>document.write(new Date().getFullYear())</script> OfflineAddress.com. Copyrights are included in the code<span class="ubuntu-font">.</span> </p>
   </div>
 </div>
-
+</div>
 <script type="text/javascript" >
 
 var results = [];
@@ -288,6 +291,9 @@ bill[3].leftA=32;  bill[3].topA=26;  bill[3].fillA="#333"; bill[3].radiusA=0; bi
 
 $(function() { // UI related initialization and handlers
   
+  $("#loader").remove();
+  $("#main-container").fadeIn(1000);
+
   $("#button-set").buttonset();
   $("#button-set button").click(function() {
     // persist changes for user Bookmarking
