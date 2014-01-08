@@ -310,11 +310,13 @@
   color: #b3b3b3;
   margin: 0;
 }
-#back-to-homepage {
+#options-buttons {
   position: absolute;
   right: 0%;
   top: -45px;
-  border-radius: 20px;
+}
+#options-buttons button {
+  border-radius: 12px;
   font-size: 12px;
   z-index: 4;
 }

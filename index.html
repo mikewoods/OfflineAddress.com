@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/skeleton.css">
   <!-- custom CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
   <!-- jQuery UI -->
   <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.min.css">
 
@@ -67,7 +68,10 @@
   <div class="container" >
     <div class="sixteen columns">
         <div id="tabs-results">
-          <button id="back-to-homepage">Back to Homepage</button>
+          <div id="options-buttons">
+            <button id="print-button">Print</button>
+            <button id="back-to-homepage">Back to Homepage</button>
+          </div>
           <p id="tabs-desc"> Show generated addresses as: </p>
           <ul>
             <li><a href="#tabs-1">Individual addresses</a></li>
@@ -462,6 +466,9 @@ $(function() { // UI related initialization and handlers
       window.location = "/";
     } catch(e) {}
     window.location.reload();
+  });
+  $("#print-button").button().click(function() {
+    window.print(); 
   });
   $("#wait-more").hide();
   $("#wait-div").hide();

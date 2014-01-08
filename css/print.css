@@ -1,0 +1,24 @@
+#stripe,
+#options-buttons,
+#tabs-desc,
+#tabs-post-desc,
+#bill-buttons,
+#update-bulk-div,
+#footer,
+.ui-tabs-nav {
+  display: none !important;
+}
+* {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: white !important;
+}
+#bills * {
+  background-color: transparent !important;
+}
+.select-all-on-click,
+.comment-on-qr-address li,
+.comment-on-qr-key li,
+#results-textarea {
+  color: black !important;
+}

@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# rev 001
+# rev 002
 CACHE:
 js/bitcoin.js
 js/crypto.js
@@ -24,6 +24,7 @@ css/bitcoin-font-condensed.woff
 css/bitcoin-font.woff
 css/skeleton.css
 css/style.css
+css/print.css
 css/ui-lightness/jquery-ui-1.10.3.custom.min.css
 css/ui-lightness/images/animated-overlay.gif
 css/ui-lightness/images/my-ui-bg_diagonals-thick_20_666666_40x40.png
