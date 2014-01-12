@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# rev 002
+# rev 003
 CACHE:
 js/bitcoin.js
 js/crypto.js
@@ -47,6 +47,11 @@ css/ui-lightness/images/ui-icons_ffffff_256x240.png
 /?n=10
 /?n=100
 /?n=1000
+/?n=1&site=about
+/?site=about
+/?n=100&site=about
+/?n=1000&site=about
+/?site=about#security-risk
 favicon.ico
 
 NETWORK:
