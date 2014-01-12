@@ -212,14 +212,14 @@
   top: -35px;
   left: 15px;
   z-index: 4;
-  font-size: 14x;
+  font-size: 14px;
 }
 #input-description-div {
   position: absolute;
   top: 5px;
   left: 15px;
   z-index: 4;
-  font-size: 14x;
+  font-size: 14px;
 }
 #input-div {
   position: relative;
@@ -239,7 +239,7 @@
   margin-top: -32px;
   top: 50%;
   z-index: 4;
-  font-size: 14x;
+  font-size: 14px;
 }
 #dialog-confirm p {
   margin-bottom: 8px;
@@ -286,7 +286,7 @@
 }
 #tabs-results .ui-widget-header {
   border: 1px solid #f69319;
-  background: #fbaf52 url(ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;*/
+  background: #fbaf52 url(ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;
 }
 #tabs-results {
   margin-top: 50px;
@@ -404,7 +404,7 @@
 #individual-addresses .qr-code-address ul li { color: #f69319; }
 #individual-addresses .qr-code-key ul li { color: #186C9D; }
 .comment-on-qr-address, .comment-on-qr-key {
-  width: 168x; /* max 198-2*15 in smaller layout */
+  width: 168px; /* max 198-2*15 in smaller layout */
 }
 .comment-on-qr-address { float: left; }
 .comment-on-qr-key {  float: right; text-align: right; }
@@ -579,14 +579,14 @@
 
 /* overlay, spinner */
 #wait-div .my-ui-widget-overlay {
-  background:#666 url(../img/my-overlay.png) 50% 50% repeat;
-  filter:Alpha(Opacity=20);
+  background: #5f5f5f url(../img/my-overlay.png) 50% 50% repeat;
+  filter: alpha(opacity=20);
   opacity: 0.2;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 98;
 }
 #wait-div p {
@@ -610,7 +610,7 @@
 
 /* smaller screen */
 @media only screen and (max-width: 959px) {
-  #stripe  .stripe-text.right, #stripe  .stripe-text.left {
+  #stripe .stripe-text.right, #stripe .stripe-text.left {
     font-size: 24px;
   }
   .main-right #smaller-address {
