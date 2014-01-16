@@ -231,7 +231,7 @@
             </div>
             <div id="input-description-div">
               <p class="remove-bottom">
-                Shake your mouse to add randomness - to create <span class="b">secure</span> addresses.
+                <span id="user-instruction">Shake your mouse to add randomness</span> - to create <span class="b">secure</span> addresses.
               </p>
             </div>
             <div id="knob-div">
@@ -415,8 +415,14 @@ $(function() { // UI related initialization and handlers
   });
 
   n = parseInt(getParameterByName("n"), 10);
-  if (n !== 1 && n !== 100 && n !== 1000)
+  if (isHandheldDevice()) {
+    $("#user-instruction").text("Tap to add randomness"); // change instruction
+    if (! n)
+      n = 1;
+  }
+  else if (n !== 1 && n !== 100 && n !== 1000)
     n = 10;
+
   currentSite = getParameterByName("site");
   if (currentSite) {
     $("#input-div").hide();
@@ -703,14 +709,16 @@ $(function() { // UI related initialization and handlers
     
     if (i + 1 < n) // loop condition
       setTimeout("updateIndividualResults(" + (i + 1) + ")", 5); // recursive implementation of loop, to give UI some time for rendering
-    else {
-      $(".select-all-on-click").focus(function(event) {
-        $(this).select();
-        $(this).mouseup(function(e) {
-          $(this).unbind("mouseup");
-          return false;
+    else { // end
+      if (! isHandheldDevice()) {
+        $(".select-all-on-click").focus(function(event) {
+          $(this).select();
+          $(this).mouseup(function(e) {
+            $(this).unbind("mouseup");
+            return false;
+          });
         });
-      });
+      }
     }
   }
   
@@ -789,7 +797,7 @@ var randomnessContainer = new function() {
   this.setNumAddresses = function(num) {
     this.numAddresses = num;
     this.neededLength = num * 32;
-    if (num == 1)
+    if (num == 1 && ! isHandheldDevice())
       this.neededLength += 32;
   }
   this.addPointToRandomness = function(x, y, progressCallback) {
@@ -864,6 +872,10 @@ function testIsOnline(callback) {
     },
     dataType: "json"
   });
+}
+
+function isHandheldDevice() { // detect handheld device
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
   
 </script>
