@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# rev 005
+# rev 006
 CACHE:
 js/bitcoin.js
 js/crypto.js
@@ -19,6 +19,8 @@ img/lock.png
 img/my-overlay.png
 img/pattern.jpg
 img/shield.png
+img/soc-buttons-hover.png
+img/soc-buttons.png
 img/spinner.gif
 css/bitcoin-font-condensed.woff
 css/bitcoin-font.woff

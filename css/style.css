@@ -576,6 +576,35 @@
 #main-container {
   display: none;
 }
+#disabled-add-this-buttons {
+  padding-top: 20px;
+  padding-left: 1px;
+}
+a#load-add-this {
+  display: block;
+  width: 248px;
+  height: 32px;
+  background:url(../img/soc-buttons.png) 1px 1px no-repeat;
+  padding: 1px;
+}
+a#load-add-this:hover {
+  background:url(../img/soc-buttons-hover.png) 0px 0px no-repeat;
+  padding: 0px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 3px;
+}
+a#load-add-this p {
+  opacity: 0;
+  color: #186C9D;
+  padding-top: 6px;
+}
+a#load-add-this:hover p {
+  opacity: 1;
+}
 
 /* overlay, spinner */
 #wait-div .my-ui-widget-overlay {

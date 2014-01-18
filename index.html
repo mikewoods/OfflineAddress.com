@@ -169,7 +169,7 @@
             <li> This site generates private keys in your browser, not on our servers. Your private keys never leave your computer. </li>
             <li> This site will always warn you if you're online when generating addresses. </li>
             <li> This site doesn't store any cookies. </li>
-            <li> This site doesn't include any external JavaScript code (no ads, and no analytic or tracking software). </li>
+            <li> This site doesn't include any external JavaScript code automatically. No ads, and no analytic or tracking software (unless user decides to share this site on social platforms). </li>
             <li> This site is supported only by donations made to: 17edQ3AseQtMHibLwCmTCqb9gk7zvj63cg </li>
           </ul>
           <h2>How to be more secure?</h2>
@@ -248,6 +248,9 @@
                 <a href="http://www.apple.com/safari">Safari</a>, and <a href="http://www.konqueror.org">Konqueror</a>.
               </p>
             </canvas>
+          </div>  
+          <div id="disabled-add-this-buttons">
+            <a href="/" id="load-add-this"><p class="remove-bottom">Click to Enable</p></a>
           </div>
         </div>
       </div>
@@ -453,6 +456,23 @@ $(function() { // UI related initialization and handlers
       });
     }
   }
+  
+  // add-this option
+  $("#disabled-add-this-buttons").hide(); // hide option
+  $("#load-add-this").click(function(e) {
+    var addthisdata = ['<div id="add-this-buttons">',
+        '<div class="addthis_toolbox addthis_default_style addthis_32x32_style">',
+          '<a class="addthis_button_preferred_1"><\/a>',
+          '<a class="addthis_button_preferred_2"><\/a>',
+          '<a class="addthis_button_preferred_3"><\/a>',
+          '<a class="addthis_button_preferred_4"><\/a>',
+          '<a class="addthis_button_compact"><\/a>',
+        '<\/div>',
+        '<script type="text\/javascript" src="\/\/s7.addthis.com\/js\/300\/addthis_widget.js#pubid=ra-52d8f73d440c4cab"><\/script>',
+      '<\/div>'].join('\n');
+    $("#disabled-add-this-buttons").html(addthisdata);
+    e.preventDefault();
+  });
   
   var restartBillsRendering = function() {
     cancelUpdateNotesResults = true;
@@ -744,6 +764,7 @@ $(function() { // UI related initialization and handlers
   
   $("#generate-button-div button").click(function() {
     $("#generate-button-div button").blur(); // unfocus clicked button
+    $("#disabled-add-this-buttons").remove();
     testIsOnline(function(isTrue) {
       // open confirm dialog
       if (isTrue) {
@@ -850,9 +871,14 @@ function getInitRandomness() {
     timeout: 5000,
     success: function(p) {
       randomnessContainer.addInitRandomness(p);
+      initOnlineVersion();
     },
     dataType: "json"
   });
+}
+
+function initOnlineVersion() {
+  $("#disabled-add-this-buttons").show();
 }
 
 function testIsOnline(callback) {
